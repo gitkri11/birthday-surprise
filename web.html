@@ -1,0 +1,180 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Surprise For You ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS STYLING */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* Love themed background */
+            background: linear-gradient(rgba(255, 182, 193, 0.8), rgba(255, 105, 180, 0.8)), url('https://www.transparenttextures.com/patterns/heart.png');
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 500px;
+            width: 90%;
+            transition: all 0.5s ease;
+        }
+
+        h1 {
+            color: #d63384;
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+        }
+
+        .btn:hover {
+            background: #ff758f;
+            transform: scale(1.1);
+        }
+
+        /* Surprise Section (Initially Hidden) */
+        #surprise-section, #proposal-section, #final-section {
+            display: none;
+        }
+
+        .black-box {
+            background: #222;
+            color: gold;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-size: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
+            70% { transform: scale(1.05); box-shadow: 0 0 20px 10px rgba(255, 215, 0, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+        }
+
+        #gf-pic {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 15px;
+            margin-top: 20px;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: -10%;
+            pointer-events: none;
+            animation: fall 5s linear infinite;
+            color: #ff4d6d;
+            font-size: 20px;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="main-card">
+        <div id="start-section">
+            <h1>Hi Beautiful...</h1>
+            <p>I have a small secret for you.</p>
+            <button class="btn" onclick="showBirthday()">Click Me</button>
+        </div>
+
+        <div id="surprise-section">
+            <div class="black-box">
+                🎂 Happiest Birthday My Love(saddu😚)! 🎉
+            </div>
+            <p>You make every day feel like a dream.</p>
+            <button class="btn" onclick="showProposal()">I have one more question...</button>
+        </div>
+
+        <div id="proposal-section">
+            <h1>Will you marry me? 💍</h1>
+            <button class="btn" onclick="showFinal()">Yes! ❤️</button>
+            <button class="btn" style="background:#888;" onmouseover="moveButton(this)">No</button>
+        </div>
+
+        <div id="final-section">
+            <h1>Saddu said YES! 🥳</h1>
+            <img src="D:\Games\606972398_837676562589403_1855916874902211417_n.jpg" alt="Our Special Moment" id="gf-pic" onerror="this.src='https://via.placeholder.com/300x400?text=Your+Photo+Here'">
+            <p>I love you forever(kanxuuu😚)!</p>
+        </div>
+    </div>
+
+    <script>
+        // JAVASCRIPT LOGIC
+        
+        function showBirthday() {
+            document.getElementById('start-section').style.display = 'none';
+            document.getElementById('surprise-section').style.display = 'block';
+            createHearts();
+        }
+
+        function showProposal() {
+            document.getElementById('surprise-section').style.display = 'none';
+            document.getElementById('proposal-section').style.display = 'block';
+        }
+
+        function showFinal() {
+            document.getElementById('proposal-section').style.display = 'none';
+            document.getElementById('final-section').style.display = 'block';
+            // Trigger a confetti-like heart burst
+            for(let i=0; i<50; i++) { setTimeout(createHearts, i*50); }
+        }
+
+        // Fun function to make the 'No' button run away
+        function moveButton(btn) {
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        // Create falling hearts background
+        function createHearts() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-hearts');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        // Periodically create a heart
+        setInterval(createHearts, 1000);
+    </script>
+</body>
+</html>
